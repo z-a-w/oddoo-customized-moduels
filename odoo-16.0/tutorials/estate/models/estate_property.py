@@ -30,4 +30,8 @@ class EstateProperty(models.Model):
         ('received', 'Received'),
         ('offer_accepted', 'Offer Accepted')
     ])
+    property_type_id = fields.Many2one("estate.property.type", string="Property Type")
+    sales_person_id = fields.Many2one("estate.sales_person", string="Salesman")
+    buyer_id = fields.Many2one("estate.buyer", string="Buyer", copy=False)
+    tag_ids = fields.Many2many("estate.property.tag", string="Tags")
 

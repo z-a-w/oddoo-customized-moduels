@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record id="estate_property_search" model="ir.ui.view">
+        <field name="name">Estate Property Search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Search Properties">
+                <field name="name" />
+                <field name="post_code" />
+                <field name="expected_price" />
+                <field name="bedrooms" />
+                <field name="living_area"/>
+                <field name="facades"/>
+                <field name="property_type_id" />
+            </search>
+        </field>
+    </record>
+
     <record id="estate_property_list" model="ir.ui.view">
         <field name="name">Estate Property List</field>
         <field name="model">estate.property</field>
@@ -13,6 +29,7 @@
                 <field name="expected_price" />
                 <field name="selling_price" />
                 <field name="date_availability"/>
+                <field name="property_type_id" />
             </tree>
         </field>
     </record>
@@ -25,11 +42,15 @@
                 <sheet>
                     <h1>
                         <field name="name"/>
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags" />
+                        </group>
                     </h1>
                     <group>
                         <group>
                             <field name="post_code" />
                             <field name="date_availability" />
+                            <field name="property_type_id" />
                         </group>
                         <group>
                             <field name="expected_price" />
@@ -49,6 +70,12 @@
                                 <field name="garden_orientation" />
                             </group>
                         </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="sales_person_id" />
+                                <field name="buyer_id" />
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -56,7 +83,7 @@
     </record>
 
     <record id="estate_property_action" model="ir.actions.act_window">
-        <field name="name">Estate Property Action</field>
+        <field name="name">Estate Property</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
     </record>
